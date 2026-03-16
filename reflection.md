@@ -4,13 +4,11 @@
 
 **a. Initial design**
 
-- Briefly describe your initial UML design.
-- What classes did you include, and what responsibilities did you assign to each?
+The initial UML design consisted of four classes: Owner, Pet, Task, and Scheduler. The Owner class was responsible for storing contact information and holding a list of pets. The Pet class tracked species, breed, age, and medical history, and maintained its own list of associated tasks. The Task class represented a single care action with a title, category, and completion status. The Scheduler class acted as the central coordinator, holding a reference to the owner and a queue of all tasks to be managed.
 
 **b. Design changes**
 
-- Did your design change during implementation?
-- If yes, describe at least one change and why you made it.
+Yes, the design changed during implementation. The first draft of the Scheduler did not account for constraints. It simply held a list of tasks with no logic for time availability, priority, or owner preferences. After revisiting the design, `priority`, `estimated_duration`, and `deadline` were added to `Task`, and `start_time`, `end_time`, and `preferences` were added to `Owner`. The `Scheduler` gained `apply_constraints()`, `prioritize_tasks()`, and `explain_plan()` methods so the daily plan could be built around what the owner actually has time for, rather than just listing all pending tasks.
 
 ---
 
